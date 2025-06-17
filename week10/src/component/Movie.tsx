@@ -1,9 +1,10 @@
-import type {Movie} from "../model/Movie.ts";
+import type {Movie as MovieModel} from "../model/Movie.ts";
+import {memo} from "react";
 
-export function Movie({
+export const Movie = memo(function Movie({
     movie
 }: {
-    movie: Movie
+    movie: MovieModel
 }) {
     return <div className="relative rounded-md shadow-md overflow-clip">
         <div className="flex flex-col">
@@ -19,4 +20,4 @@ export function Movie({
 
         <span className="absolute top-0 right-0 bg-blue-600 text-white rounded-md p-1 m-2">{movie.rating}</span>
     </div>
-}
+})

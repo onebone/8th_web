@@ -1,4 +1,5 @@
 import {useForm} from "react-hook-form"
+import {memo} from "react";
 
 type Language = 'ko' | 'en' | 'ja'
 
@@ -8,7 +9,7 @@ interface SearchProps {
     language: Language
 }
 
-export function Search({
+export const Search = memo(function Search({
     onSubmit
 }: {
     onSubmit: (value: string) => void
@@ -65,4 +66,4 @@ export function Search({
             >검색하기</button>
         </div>
     </form>
-}
+})

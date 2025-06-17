@@ -2,31 +2,33 @@ import {useState} from 'react'
 import './App.css'
 import {Search} from "./component/Search.tsx";
 import {Movie as MovieComponent} from "./component/Movie.tsx";
+import type {Movie} from "./model/Movie.ts";
+import Modal from "./component/Modal.tsx";
+import {movies} from "./movies.ts";
 
 function App() {
-    const [value, onValueChange] = useState('')
+    const [floatingMovie, setFloatingMovie] = useState<Movie | null>(null)
+    const [title, setTitle] = useState<string>('')
+
+    const filteredMovies = movies.filter((movie) => movie.title.includes(title))
 
     return (
         <>
-            <Search onSubmit={(title) => console.log('search:', title)}/>
+            <Search onSubmit={(title) => setTitle(title)}/>
 
             <div className="grid grid-cols-5 gap-4 mt-8">
-                <MovieComponent movie={{
-                    title: 'test',
-                    description: 'test',
-                    rating: 10,
-                    releaseDate: '2021-01-01',
-                    imageUrl: 'https://image.tmdb.org/t/p/w500/test'
-                }}/>
-
-                <MovieComponent movie={{
-                    title: 'test',
-                    description: 'test',
-                    rating: 10,
-                    releaseDate: '2021-01-01',
-                    imageUrl: 'https://image.tmdb.org/t/p/w500/test'
-                }}/>
+                {
+                    filteredMovies.map((movie) => <MovieComponent key={movie.id} movie={movie} />)
+                }
             </div>
+
+            {
+                floatingMovie && <Modal>
+                    <>
+
+                    </>
+                </Modal>
+            }
         </>
     )
 }
