@@ -27,6 +27,8 @@
     "vite": "^6.3.5",
     "@tailwindcss/vite": "^4.1.10",
     "tailwindcss": "^4.1.10",
-    "react-router-dom": "^7.6.2"
+    "react-router-dom": "^7.6.2",
+    "react-hook-form": "^7.58.0",
+    "@tanstack/react-query": "^5.80.7"
   }
 }
