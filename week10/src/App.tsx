@@ -1,25 +1,34 @@
 import {useState} from 'react'
 import './App.css'
 import {Search} from "./component/Search.tsx";
-import {useQuery} from "@tanstack/react-query";
+import {Movie as MovieComponent} from "./component/Movie.tsx";
 
 function App() {
-  const [value, onValueChange] = useState('')
+    const [value, onValueChange] = useState('')
 
-    const {data} = useQuery({
-      initialData: {
+    return (
+        <>
+            <Search onSubmit={(title) => console.log('search:', title)}/>
 
-      },
-      queryFn: () => {
-        
-      }
-    })
+            <div className="grid grid-cols-5 gap-4 mt-8">
+                <MovieComponent movie={{
+                    title: 'test',
+                    description: 'test',
+                    rating: 10,
+                    releaseDate: '2021-01-01',
+                    imageUrl: 'https://image.tmdb.org/t/p/w500/test'
+                }}/>
 
-  return (
-    <>
-        <Search onSubmit={(title) => console.log('search:', title)} />
-    </>
-  )
+                <MovieComponent movie={{
+                    title: 'test',
+                    description: 'test',
+                    rating: 10,
+                    releaseDate: '2021-01-01',
+                    imageUrl: 'https://image.tmdb.org/t/p/w500/test'
+                }}/>
+            </div>
+        </>
+    )
 }
 
 export default App
